@@ -1,0 +1,43 @@
+﻿
+@model EventEase1.Models.Event
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<h2 class="text-center mb-4">Edit Event</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="EventId" />
+
+    <div class="form-group mb-3">
+        <label asp-for="EventName" class="form-label">Event Name</label>
+        <input asp-for="EventName" class="form-control" />
+        <span asp-validation-for="EventName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="EventDate" class="form-label">Event Date</label>
+        <input asp-for="EventDate" class="form-control" type="datetime-local" />
+        <span asp-validation-for="EventDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <label asp-for="VenueId" class="form-label">Select Venue</label>
+        <select asp-for="VenueId" class="form-select" asp-items="ViewBag.VenueId">
+            <option value="">-- Select Venue --</option>
+        </select>
+        <span asp-validation-for="VenueId" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </div>
+</form>

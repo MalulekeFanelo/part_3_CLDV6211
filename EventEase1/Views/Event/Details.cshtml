@@ -1,0 +1,28 @@
+﻿@model EventEase1.Models.Event
+
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<h2 class="text-center mb-4">Event Details</h2>
+
+<div class="card p-4 shadow-sm">
+    <dl class="row">
+        <dt class="col-sm-3">Event Name</dt>
+        <dd class="col-sm-9">@Model.EventName</dd>
+
+        <dt class="col-sm-3">Date</dt>
+        <dd class="col-sm-9">@Model.EventDate.ToString("yyyy-MM-dd HH:mm")</dd>
+
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+
+        <dt class="col-sm-3">Venue</dt>
+        <dd class="col-sm-9">@Model.Venue?.VenueName ?? "Not Assigned"</dd>
+    </dl>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

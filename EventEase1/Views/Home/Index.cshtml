@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EventEase1.Models.Booking>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section text-center py-5 mb-5 rounded-3 bg-primary text-white">
+        <h1 class="display-4 fw-bold">Welcome to EventEase</h1>
+        <p class="lead">Your premier event and venue management system</p>
+    </div>
+
+    <!-- Quick Navigation Cards -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
+                    <h3 class="card-title">Events</h3>
+                    <p class="card-text">Browse and manage upcoming events</p>
+                    <a asp-controller="Event" asp-action="Index" class="btn btn-primary">View Events</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
+                    <h3 class="card-title">Venues</h3>
+                    <p class="card-text">Explore our available venues</p>
+                    <a asp-controller="Venue" asp-action="Index" class="btn btn-primary">View Venues</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-ticket-alt fa-3x mb-3 text-primary"></i>
+                    <h3 class="card-title">Bookings</h3>
+                    <p class="card-text">Manage your current bookings</p>
+                    <a asp-controller="Booking" asp-action="Index" class="btn btn-primary">View Bookings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+    .hero-section {
+        padding: 4rem 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        transition: transform 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+        }
+
+    .border-primary {
+        border-color: #0d6efd !important;
+    }
+</style>

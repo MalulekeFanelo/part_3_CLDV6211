@@ -1,0 +1,44 @@
+﻿@model EventEase1.Models.Venue
+
+@{
+    ViewData["Title"] = "Edit Venue";
+}
+
+<h2>Edit Venue</h2>
+
+<!-- ✅ Added enctype="multipart/form-data" -->
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="VenueId" />
+
+    <div class="form-group">
+        <label asp-for="VenueName"></label>
+        <input asp-for="VenueName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" />
+    </div>
+
+    <!-- ✅ Show current image if it exists -->
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <div class="form-group">
+            <label>Current Image:</label>
+            <img src="@Model.ImageUrl" alt="Venue Image" style="max-width: 200px; max-height: 200px;" />
+        </div>
+    }
+
+    <!-- ✅ Updated image upload input with type="file" -->
+    <div class="form-group">
+        <label asp-for="ImageFile">Upload New Image (optional)</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

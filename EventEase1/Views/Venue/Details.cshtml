@@ -1,0 +1,25 @@
+﻿@model EventEase1.Models.Venue
+
+@{
+    ViewData["Title"] = "Venue Details";
+}
+
+<h2>Venue Details</h2>
+
+<div>
+    <strong>Name:</strong> @Model.VenueName <br />
+    <strong>Location:</strong> @Model.Location <br />
+
+    <strong>venueImage:</strong><br />
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl" alt="Venue Image" width="200" height="150" style="border: 1px solid #ccc; margin-top: 10px;" />
+    }
+    else
+    {
+        <span>No image available</span>
+    }
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.VenueId">Edit</a> |
+<a asp-action="Index">Back to List</a>
