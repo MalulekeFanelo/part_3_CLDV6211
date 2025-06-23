@@ -1,27 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.Logging;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EventEase1.Models
-
 {
     public class Booking
     {
-        
-              
         public int BookingId { get; set; }
 
         [Required]
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
 
         [Required]
-        public int VenueId { get; set; }
+        public int? VenueId { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BookingDate { get; set; }
 
-        // Navigation properties
-        public Event? Event  { get; set; } = null!;
-        public Venue? Venue  { get; set; }= null!;
+        // Correct navigation properties
+        public Event? Event { get; set; }
+        public Venue? Venue { get; set; }
     }
 }

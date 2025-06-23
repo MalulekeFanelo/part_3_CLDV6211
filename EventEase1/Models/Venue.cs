@@ -17,6 +17,10 @@ namespace EventEase1.Models
         public string Location { get; set; }
 
 
+        public bool Availability { get; set; }
+
+
+
         public int Capacity { get; set; }
              public string ImageUrl { get; set; } = "https://via.placeholder.com/150";
         [NotMapped]

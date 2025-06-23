@@ -9,6 +9,8 @@ namespace EventEase1.Models
         public DbSet<Venue> Venues { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
+
 
 
 
@@ -17,6 +19,8 @@ namespace EventEase1.Models
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<Venue>().ToTable("Venue");
             modelBuilder.Entity<Booking>().ToTable("Booking");
+            modelBuilder.Entity<EventType>().ToTable("EventType");
+
         }
     }
 }

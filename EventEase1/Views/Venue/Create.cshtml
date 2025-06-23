@@ -32,6 +32,12 @@
         <input asp-for="ImageFile" class="form-control" type="file" />
         <span asp-validation-for="ImageFile" class="text-danger"></span>
     </div>
+    
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Availability" /> @Html.DisplayNameFor(model => model.Availability)
+        </label>
+    </div>
 
     <button type="submit" class="btn btn-primary">Save</button> |
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>

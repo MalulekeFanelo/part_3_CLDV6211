@@ -6,25 +6,71 @@
 
 <h2>Bookings</h2>
 
-<!-- Search Form -->
-<form method="get">
+<!-- Search Form (Original style with added filters) -->
+<form method="get" class="mb-4">
     <div class="form-group">
-        <label for="searchString">Search by Booking ID or Event Name:</label>
-        <input type="text" id="searchString" name="searchString" class="form-control" />
-        <button type="submit" class="btn btn-primary mt-2">Search</button>
+        <label for="searchString">Search:</label>
+        <input type="text" id="searchString" name="searchString"
+               class="form-control" value="@Context.Request.Query["searchString"]"
+               placeholder="Booking ID or Event Name" />
     </div>
+
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <label>Event Type:</label>
+            <select name="eventTypeId" class="form-control">
+                <option value="">All Types</option>
+                @foreach (var type in ViewBag.EventTypes)
+                {
+                    <option value="@type.Value" selected="@(Context.Request.Query["eventTypeId"] == type.Value)">
+                        @type.Text
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label>Venue Status:</label>
+            <select name="venueAvailable" class="form-control">
+                <option value="">Any</option>
+                <option value="true" selected="@(Context.Request.Query["venueAvailable"] == "true")">Available</option>
+                <option value="false" selected="@(Context.Request.Query["venueAvailable"] == "false")">Unavailable</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <label>From Date:</label>
+            <input type="date" name="startDate" class="form-control"
+                   value="@Context.Request.Query["startDate"]" />
+        </div>
+
+        <div class="col-md-4">
+            <label>To Date:</label>
+            <input type="date" name="endDate" class="form-control"
+                   value="@Context.Request.Query["endDate"]" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Search</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3 ml-2">Reset</a>
 </form>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New Booking</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 
+<!-- Original Table Style -->
 <table class="table">
     <thead>
         <tr>
+            <th>Booking ID</th>
             <th>Event</th>
+            <th>Event Type</th>
             <th>Venue</th>
-            <th>Booking Date</th>
+            <th>Status</th>
+            <th>Event Date</th>
             <th></th>
         </tr>
     </thead>
@@ -32,9 +78,12 @@
         @foreach (var booking in Model)
         {
             <tr>
+                <td>@booking.BookingId</td>
                 <td>@booking.Event?.EventName</td>
+                <td>@booking.Event?.EventType?.Name</td>
                 <td>@booking.Venue?.VenueName</td>
-                <td>@booking.BookingDate.ToShortDateString()</td>
+                <td>@(booking.Venue?.Availability == true ? "Available" : "Unavailable")</td>
+                <td>@booking.Event?.EventDate.ToString("yyyy-MM-dd")</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@booking.BookingId">Details</a> |
                     <a asp-action="Edit" asp-route-id="@booking.BookingId">Edit</a> |

@@ -24,6 +24,11 @@
         <label asp-for="Capacity"></label>
         <input asp-for="Capacity" class="form-control" />
     </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" asp-for="Availability" /> @Html.DisplayNameFor(model => model.Availability)
+        </label>
+    </div>
 
     <!-- ✅ Show current image if it exists -->
     @if (!string.IsNullOrEmpty(Model.ImageUrl))

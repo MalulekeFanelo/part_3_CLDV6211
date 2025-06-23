@@ -11,8 +11,9 @@
             <th>Name</th>
             <th>Location</th>
             <th>Capacity</th>
-            <th>venueImage</th> <!-- Changed header here -->
-            <th></th>
+            <th>Availability</th> <!-- New Column -->
+            <th>Venue Image</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,10 +23,11 @@
                 <td>@item.VenueName</td>
                 <td>@item.Location</td>
                 <td>@item.Capacity</td>
+                <td>@(item.Availability ? "✅ Available" : "❌ Unavailable")</td> <!-- Display as icon/text -->
                 <td>
                     @if (!string.IsNullOrEmpty(item.ImageUrl))
                     {
-                        <img src="@item.ImageUrl" alt=" Venu Image" width="100" height="100"  />
+                        <img src="@item.ImageUrl" alt="Venue Image" width="100" height="100" />
                     }
                     else
                     {

@@ -19,7 +19,12 @@ namespace EventEase1.Models
         public int? VenueId { get; set; }
 
         public Venue? Venue { get; set; }
-        
+
+        public int? EventTypeID { get; set; }
+        public EventType? EventType { get; set; }
+
+
+
         // ✅ Navigation property to Bookings
         public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }

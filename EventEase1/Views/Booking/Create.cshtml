@@ -4,34 +4,56 @@
     ViewData["Title"] = "Create Booking";
 }
 
-<h2>Create Booking</h2>
+<h1>Create Booking</h1>
 
-<form asp-action="Create" method="post">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<h4>Booking</h4>
+<hr />
 
-    <div class="form-group">
-        <label asp-for="EventId" class="control-label"></label>
-        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
-        <span asp-validation-for="EventId" class="text-danger"></span>
+<!-- Display any general error messages -->
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
     </div>
+}
 
-    <div class="form-group">
-        <label asp-for="VenueId" class="control-label"></label>
-        <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select> 
-        <span asp-validation-for="VenueId" class="text-danger"></span>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="EventId" class="control-label"></label>
+                <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+                <span asp-validation-for="EventId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="VenueId" class="control-label"></label>
+                <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BookingDate" class="control-label"></label>
+                <input asp-for="BookingDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="BookingDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="BookingDate" class="control-label"></label>
-        <input asp-for="BookingDate" class="form-control" type="date" />
-        <span asp-validation-for="BookingDate" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create</button> |
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
-    @Html.Partial("_ValidationScriptsPartial")
-)
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
