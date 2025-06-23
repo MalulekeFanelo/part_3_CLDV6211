@@ -103,7 +103,7 @@ namespace EventEase1.Controllers
             }
 
             ViewData["VenueId"] = new SelectList(_context.Venues, "VenueId", "VenueName", @event.VenueId);
-            ViewData["EventTypeID"] = new SelectList(_context.EventTypes, "EventTypeID", "TypeName", @event.EventTypeID);
+            ViewData["EventTypeID"] = new SelectList(_context.EventTypes, "EventTypeID", "Name", @event.EventTypeID);
             return View(@event);
         }
 
